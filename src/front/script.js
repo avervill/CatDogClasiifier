@@ -16,6 +16,10 @@ document.getElementById('imageInput').addEventListener('change', function(event)
             console.log('Starting classification...');
             classifyImage(file);
         };
+        reader.onerror = function(e) {
+            console.error('Error reading file:', e);
+            showError('Error reading the selected file');
+        };
         reader.readAsDataURL(file);
     } else {
         console.log('No file selected');
@@ -172,6 +176,21 @@ function showResults() {
     }
 }
 
+// Loading functions
+function showLoading() {
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.style.display = 'block';
+    }
+}
+
+function hideLoading() {
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.style.display = 'none';
+    }
+}
+
 // Add some interactive effects
 document.addEventListener('DOMContentLoaded', function() {
     const uploadBtn = document.querySelector('.upload-btn');
@@ -185,10 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Make sure the upload button works
-    uploadBtn.addEventListener('click', function() {
-        console.log('Upload button clicked');
-        imageInput.click();
-    });
+    // uploadBtn.addEventListener('click', function() {
+    //     console.log('Upload button clicked');
+    //     imageInput.click();
+    // });
 
     // Add click animation to upload button
     uploadBtn.addEventListener('click', function() {
