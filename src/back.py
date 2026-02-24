@@ -30,7 +30,7 @@ app.mount("/static", StaticFiles(directory=str(Path(__file__).parent / "front"))
 
 @app.get("/")
 async def root():
-    return FileResponse(Path(__file__).parent / "front" / "index.html")
+    return FileResponse(Path(__file__).parent.parent / "index.html")
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
